@@ -14,7 +14,7 @@ test('zionLexer.lex takes a String stdin as input', () => {
 });
 
 test('zionLexer.lex takes a path as input', () => {
-  const tokenList: Token[] = zionLexer.lex('./__tests__/testfiles/comment.cbl');
+  const tokenList: Token[] = zionLexer.lex('./dev/src/__tests__/testfiles/comment.cbl');
   const commentToken: Token = tokenList.find(token => token.type === 'Comment') as Token;
   expect(commentToken.type).toBe('Comment');
 });

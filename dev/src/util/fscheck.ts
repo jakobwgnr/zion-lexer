@@ -7,8 +7,9 @@
 // ------------------------------------------------------------------------------
 // Requirements
 // ------------------------------------------------------------------------------
-
-const fs = require('fs');
+import * as appRoot from 'app-root-path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 // ------------------------------------------------------------------------------
 // Public Interface
@@ -20,9 +21,9 @@ export const fscheck = {
    * @param {string} path A path to a directory
    * @returns {boolean} `true` if a directory exists at the given location
    */
-  isDirectory(path: any) {
+  isDirectory(codePath: string) {
     try {
-      return fs.lstatSync(path).isDirectory();
+      return fs.lstatSync(codePath).isDirectory();
     } catch (e) {
       return false;
     }
@@ -33,11 +34,21 @@ export const fscheck = {
    * @param {string} path A path to a file
    * @returns {boolean} `true` if a file exists at the given location
    */
-  isFile(path: any) {
+  isFile(codePath: any) {
     try {
-      return fs.lstatSync(path).isFile();
+      return fs.lstatSync(codePath).isFile();
     } catch (e) {
       return false;
+    }
+  },
+  codeFromPath(filePath: string): string {
+    if (!path.isAbsolute(filePath)) {
+      filePath = path.join(appRoot.path, filePath);
+    }
+    if (this.isFile(filePath)) {
+      return fs.readFileSync(filePath, 'utf8');
+    } else {
+      throw new Error('Not a file');
     }
   },
 };
