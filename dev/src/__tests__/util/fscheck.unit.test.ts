@@ -1,4 +1,4 @@
-import * as fscheck from '../../util/fscheck';
+import { fscheck } from '../../util/fscheck';
 
 import * as path from 'path';
 
@@ -9,6 +9,6 @@ test('fscheck.isDirectory work expected', () => {
 });
 
 test('fscheck.isFile work expected', () => {
-  expect(fscheck.isFile(path.join(__dirname, '../../util/fscheck.js'))).toBeTruthy();
-  expect(fscheck.isDirectory(path.join(__dirname, './no/such/file.js'))).toBeFalsy();
+  expect(fscheck.isFile(path.join(__dirname, '../../util/fscheck.ts'))).toBeTruthy();
+  expect(fscheck.isDirectory(path.join(__dirname, './no/such/file.ts'))).toBeFalsy();
 });

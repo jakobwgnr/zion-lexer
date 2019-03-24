@@ -4,23 +4,23 @@
  * @author Jakob Wagner
  */
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 // Requirements
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 
 const fs = require('fs');
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 // Public Interface
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 
-const fscheck = {
+export const fscheck = {
   /**
    * Checks whether the given string points to a directory
    * @param {string} path A path to a directory
    * @returns {boolean} `true` if a directory exists at the given location
    */
-  isDirectory(path) {
+  isDirectory(path: any) {
     try {
       return fs.lstatSync(path).isDirectory();
     } catch (e) {
@@ -33,7 +33,7 @@ const fscheck = {
    * @param {string} path A path to a file
    * @returns {boolean} `true` if a file exists at the given location
    */
-  isFile(path) {
+  isFile(path: any) {
     try {
       return fs.lstatSync(path).isFile();
     } catch (e) {
@@ -41,5 +41,3 @@ const fscheck = {
     }
   },
 };
-
-module.exports = fscheck;
