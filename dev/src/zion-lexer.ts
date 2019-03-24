@@ -51,3 +51,6 @@ export function lex(input: string, options?: any) {
   const lexer = new Lexer(code);
   return lexer.execute();
 }
+
+export { Token } from './Token';
+export { TokenType } from './tokentype';
