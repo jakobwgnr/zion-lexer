@@ -7,7 +7,7 @@
 [coverage-image]: https://coveralls.io/repos/github/jakobwgnr/zion-lexer/badge.svg
 [coverage-url]: https://coveralls.io/github/jakobwgnr/zion-lexer
 
-A typescript Lexer implementation for COBOL
+A typescript Lexer implementation for COBOL.
 
 **Note**: This is currently just for trying out JS/TS myself and playing around with CI etc (therefore public) & shouldn't be used anywhere productive
 
