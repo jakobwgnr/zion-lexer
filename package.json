@@ -1,6 +1,6 @@
 {
   "name": "zion-lexer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Lexer for COBOL creating an Tokens",
   "main": "./dist/zion-lexer.js",
   "types": "./dist/zion-lexer.d.js",
