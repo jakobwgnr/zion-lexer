@@ -159,10 +159,14 @@ export class Lexer {
     }
 
     if (Character.isNumeric(this.token.value)) {
-      if (Character.isLevelIndicator(this.token.value)) {
-        this.token.type = TokenType.Level;
-      } else {
-        this.token.type = TokenType.NumericLiteral;
+      this.token.type = TokenType.NumericLiteral;
+      if (Character.isNumericDecimalIndicator(this.sourcecode.getCurrentChar()) && !this.sourcecode.eof()) {
+        this.token.value = this.token.value.concat(this.sourcecode.getCurrentChar());
+        this.sourcecode.NextChar();
+        while (Character.isNumeric(this.sourcecode.getCurrentChar()) && !this.sourcecode.eof()) {
+          this.token.value = this.token.value.concat(this.sourcecode.getCurrentChar());
+          this.sourcecode.NextChar();
+        }
       }
     } else {
       if (Keyword.isKeyword(this.token.value)) {

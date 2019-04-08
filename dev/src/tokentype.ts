@@ -5,7 +5,6 @@ export const TokenType = {
   Comment: 'Comment',
   NumericLiteral: 'NumericLiteral',
   Operator: 'Operator',
-  Level: 'Level',
   EXEC: 'EXEC',
   IdentificationArea: 'IdentificationArea',
   Identifier: 'Identifier',

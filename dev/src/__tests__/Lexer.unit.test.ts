@@ -65,6 +65,20 @@ test('Numeric Token without sign digits correctly identified', () => {
   expect(tokenList[1].type).toBe(TokenType.NumericLiteral);
 });
 
+test('Numeric Token with decimal point correctly identified', () => {
+  const lexer = new Lexer('         123.56');
+
+  const tokenList: Token[] = lexer.execute();
+  expect(tokenList[1].type).toBe(TokenType.NumericLiteral);
+});
+
+test('Numeric Token with decimal comma correctly identified', () => {
+  const lexer = new Lexer('         123,56');
+
+  const tokenList: Token[] = lexer.execute();
+  expect(tokenList[1].type).toBe(TokenType.NumericLiteral);
+});
+
 test('Keyword Token correctly identified', () => {
   const lexer = new Lexer('IF');
 

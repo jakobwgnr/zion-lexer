@@ -392,6 +392,7 @@ test('Keywords with length of 15 identified', () => {
   expect(Keyword.isKeyword('OBJECT-COMPUTER')).toBeTruthy();
   expect(Keyword.isKeyword('SOURCE-COMPUTER')).toBeTruthy();
   expect(Keyword.isKeyword('WORKING-STORAGE')).toBeTruthy();
+  expect(Keyword.isKeyword('COMPUTATIONAL-5')).toBeTruthy();
 });
 
 test('Keywords with length of 16 identified', () => {
