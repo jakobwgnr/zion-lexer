@@ -51,16 +51,23 @@ export class Lexer {
             if (Character.isCobolAritmeticOperator(this.sourcecode.getCurrentChar())) {
               this.processOperator();
             } else {
-              if (Character.isCobolWordStart(this.sourcecode.getCurrentChar())) {
-                this.processMiscIdentifierTokens();
+              if (
+                Character.isOpeningBracket(this.sourcecode.getCurrentChar()) ||
+                Character.isClosingBracket(this.sourcecode.getCurrentChar())
+              ) {
+                this.processBracketToken();
               } else {
-                if (Character.isStringIndicator(this.sourcecode.getCurrentChar())) {
-                  this.processStringToken();
+                if (Character.isCobolWordStart(this.sourcecode.getCurrentChar())) {
+                  this.processMiscIdentifierTokens();
                 } else {
-                  if (Character.isCobolTerminator(this.sourcecode.getCurrentChar())) {
-                    this.processTerminatorToken();
+                  if (Character.isStringIndicator(this.sourcecode.getCurrentChar())) {
+                    this.processStringToken();
                   } else {
-                    this.processNotIdentifiedToken();
+                    if (Character.isCobolTerminator(this.sourcecode.getCurrentChar())) {
+                      this.processTerminatorToken();
+                    } else {
+                      this.processNotIdentifiedToken();
+                    }
                   }
                 }
               }
@@ -131,22 +138,21 @@ export class Lexer {
   private processOperator(): void {
     this.tokenStart();
 
+    this.token.type = TokenType.Operator;
+    while (Character.isCobolAritmeticOperator(this.sourcecode.getCurrentChar()) && !this.sourcecode.eof()) {
+      this.token.value = this.token.value.concat(this.sourcecode.getCurrentChar());
+      this.sourcecode.NextChar();
+    }
+
+    this.tokenEnd();
+  }
+
+  private processBracketToken(): void {
+    this.tokenStart();
+
+    this.token.type = TokenType.Bracket;
     this.token.value = this.token.value.concat(this.sourcecode.getCurrentChar());
     this.sourcecode.NextChar();
-
-    if (Character.isDecimalDigit(this.sourcecode.getCurrentChar())) {
-      this.token.type = TokenType.NumericLiteral;
-      while (Character.isDecimalDigit(this.sourcecode.getCurrentChar()) && !this.sourcecode.eof()) {
-        this.token.value = this.token.value.concat(this.sourcecode.getCurrentChar());
-        this.sourcecode.NextChar();
-      }
-    } else {
-      this.token.type = TokenType.Operator;
-      while (Character.isCobolAritmeticOperator(this.sourcecode.getCurrentChar()) && !this.sourcecode.eof()) {
-        this.token.value = this.token.value.concat(this.sourcecode.getCurrentChar());
-        this.sourcecode.NextChar();
-      }
-    }
 
     this.tokenEnd();
   }

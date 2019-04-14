@@ -17,9 +17,8 @@ export const Character = {
     return (
       (cp >= 0x41 && cp <= 0x5a) || // A..Z
       (cp >= 0x61 && cp <= 0x7a) || // a..z
-      (cp >= 0x30 && cp <= 0x39) || // 0..9
-      cp === 0x28
-    ); // (
+      (cp >= 0x30 && cp <= 0x39) // 0..9
+    );
   },
 
   isCobolWordPart(char: string): boolean {
@@ -29,17 +28,8 @@ export const Character = {
       (cp >= 0x61 && cp <= 0x7a) || // a..z
       (cp >= 0x30 && cp <= 0x39) || // 0..9
       cp === 0x2d || // - (Dash)
-      cp === 0x28 || // (
-      cp === 0x29 || // )
-      cp === 0x3a
-    ); // :
-  },
-
-  isNumberIndicator(char: string): boolean {
-    const cp: number = char.charCodeAt(0);
-    return (
-      cp === 0x2b || cp === 0x2d // + (Plus)
-    ); // - (Minus)
+      cp === 0x3a // :
+    );
   },
 
   isStringIndicator(char: string): boolean {
@@ -88,8 +78,8 @@ export const Character = {
       cp === 0x3d || // =
       cp === 0x3e || // >
       cp === 0x3c || // <
-      cp === 0x2d
-    ); // -
+      cp === 0x2d // -
+    );
   },
   isWhiteSpace(char: string): boolean {
     const cp: number = char.charCodeAt(0);

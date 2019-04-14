@@ -45,17 +45,59 @@ test('Operator Token with 2 digits correctly identified', () => {
 });
 
 test('Numeric Token with sign digits correctly identified', () => {
-  const lexer = new Lexer('+1');
+  const lexer = new Lexer('        +1');
 
   const tokenList: Token[] = lexer.execute();
-  expect(tokenList[0].type).toBe(TokenType.NumericLiteral);
+  expect(tokenList[0].type).toBe(TokenType.WhiteSpace);
+  expect(tokenList[1].type).toBe(TokenType.Operator);
+  expect(tokenList[2].type).toBe(TokenType.NumericLiteral);
 });
 
 test('Numeric Token with sign digits correctly identified', () => {
-  const lexer = new Lexer('-1');
+  const lexer = new Lexer('        -1');
 
   const tokenList: Token[] = lexer.execute();
-  expect(tokenList[0].type).toBe(TokenType.NumericLiteral);
+  expect(tokenList[0].type).toBe(TokenType.WhiteSpace);
+  expect(tokenList[1].type).toBe(TokenType.Operator);
+  expect(tokenList[2].type).toBe(TokenType.NumericLiteral);
+});
+
+test('Brackets - Opening Bracket identified correctly', () => {
+  const lexer = new Lexer('        (');
+
+  const tokenList: Token[] = lexer.execute();
+  expect(tokenList[0].type).toBe(TokenType.WhiteSpace);
+  expect(tokenList[1].type).toBe(TokenType.Bracket);
+});
+
+test('Brackets - Closing Bracket identified correctly', () => {
+  const lexer = new Lexer('        )');
+
+  const tokenList: Token[] = lexer.execute();
+  expect(tokenList[0].type).toBe(TokenType.WhiteSpace);
+  expect(tokenList[1].type).toBe(TokenType.Bracket);
+});
+
+test('Brackets - Length Identifier identified correctly', () => {
+  const lexer = new Lexer('        (1:1)');
+
+  const tokenList: Token[] = lexer.execute();
+  expect(tokenList[0].type).toBe(TokenType.WhiteSpace);
+  expect(tokenList[1].type).toBe(TokenType.Bracket);
+  expect(tokenList[2].type).toBe(TokenType.Identifier);
+  expect(tokenList[3].type).toBe(TokenType.Bracket);
+});
+
+test('Brackets - Aritmetic expression identified correctly', () => {
+  const lexer = new Lexer('        (1+1)');
+
+  const tokenList: Token[] = lexer.execute();
+  expect(tokenList[0].type).toBe(TokenType.WhiteSpace);
+  expect(tokenList[1].type).toBe(TokenType.Bracket);
+  expect(tokenList[2].type).toBe(TokenType.NumericLiteral);
+  expect(tokenList[3].type).toBe(TokenType.Operator);
+  expect(tokenList[4].type).toBe(TokenType.NumericLiteral);
+  expect(tokenList[5].type).toBe(TokenType.Bracket);
 });
 
 test('Numeric Token without sign digits correctly identified', () => {

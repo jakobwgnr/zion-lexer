@@ -23,7 +23,7 @@ test('isCobolWordStart works correctly', () => {
   expect(Character.isCobolWordStart('0')).toBeTruthy();
   expect(Character.isCobolWordStart('9')).toBeTruthy();
   expect(Character.isCobolWordStart('-')).toBeFalsy();
-  expect(Character.isCobolWordStart('(')).toBeTruthy();
+  expect(Character.isCobolWordStart('(')).toBeFalsy();
   expect(Character.isCobolWordStart(')')).toBeFalsy();
   expect(Character.isCobolWordStart(':')).toBeFalsy();
 });
@@ -37,15 +37,9 @@ test('isCobolWordPart works correctly', () => {
   expect(Character.isCobolWordPart('0')).toBeTruthy();
   expect(Character.isCobolWordPart('9')).toBeTruthy();
   expect(Character.isCobolWordPart('-')).toBeTruthy();
-  expect(Character.isCobolWordPart('(')).toBeTruthy();
-  expect(Character.isCobolWordPart(')')).toBeTruthy();
+  expect(Character.isCobolWordPart('(')).toBeFalsy();
+  expect(Character.isCobolWordPart(')')).toBeFalsy();
   expect(Character.isCobolWordPart(':')).toBeTruthy();
-});
-
-test('isNumberIndicator works correctly', () => {
-  expect(Character.isNumberIndicator('A')).toBeFalsy();
-  expect(Character.isNumberIndicator('-')).toBeTruthy();
-  expect(Character.isNumberIndicator('+')).toBeTruthy();
 });
 
 test('isStringIndicator works correctly', () => {

@@ -11,5 +11,6 @@ export const TokenType = {
   EOF: 'EOF',
   StringLiteral: 'StringLiteral',
   Terminator: 'Terminator',
+  Bracket: 'Bracket',
   NotIdentified: 'NotIdentified',
 };
