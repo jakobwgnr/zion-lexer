@@ -27,7 +27,13 @@ export const Character = {
       (cp >= 0x41 && cp <= 0x5a) || // A..Z
       (cp >= 0x61 && cp <= 0x7a) || // a..z
       (cp >= 0x30 && cp <= 0x39) || // 0..9
-      cp === 0x2d || // - (Dash)
+      cp === 0x2d // - (Dash)
+    );
+  },
+
+  isColon(char: string): boolean {
+    const cp: number = char.charCodeAt(0);
+    return (
       cp === 0x3a // :
     );
   },

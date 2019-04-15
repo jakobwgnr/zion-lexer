@@ -66,7 +66,11 @@ export class Lexer {
                     if (Character.isCobolTerminator(this.sourcecode.getCurrentChar())) {
                       this.processTerminatorToken();
                     } else {
-                      this.processNotIdentifiedToken();
+                      if (Character.isColon(this.sourcecode.getCurrentChar())) {
+                        this.processColonToken();
+                      } else {
+                        this.processNotIdentifiedToken();
+                      }
                     }
                   }
                 }
@@ -75,8 +79,6 @@ export class Lexer {
           }
         }
       }
-
-      // this.sourcecode.NextChar();
     }
 
     this.tokenList.push(
@@ -200,6 +202,15 @@ export class Lexer {
   private processTerminatorToken(): void {
     this.tokenStart();
     this.token.type = TokenType.Terminator;
+    this.token.value = this.token.value.concat(this.sourcecode.getCurrentChar());
+    this.tokenEnd();
+
+    this.sourcecode.NextChar();
+  }
+
+  private processColonToken(): void {
+    this.tokenStart();
+    this.token.type = TokenType.Colon;
     this.token.value = this.token.value.concat(this.sourcecode.getCurrentChar());
     this.tokenEnd();
 

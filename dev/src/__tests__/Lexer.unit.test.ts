@@ -84,8 +84,24 @@ test('Brackets - Length Identifier identified correctly', () => {
   const tokenList: Token[] = lexer.execute();
   expect(tokenList[0].type).toBe(TokenType.WhiteSpace);
   expect(tokenList[1].type).toBe(TokenType.Bracket);
-  expect(tokenList[2].type).toBe(TokenType.Identifier);
-  expect(tokenList[3].type).toBe(TokenType.Bracket);
+  expect(tokenList[2].type).toBe(TokenType.NumericLiteral);
+  expect(tokenList[3].type).toBe(TokenType.Colon);
+  expect(tokenList[4].type).toBe(TokenType.NumericLiteral);
+  expect(tokenList[5].type).toBe(TokenType.Bracket);
+});
+
+test('Brackets - Length Identifier with aritmetic expression identified correctly', () => {
+  const lexer = new Lexer('        (1+1:1)');
+
+  const tokenList: Token[] = lexer.execute();
+  expect(tokenList[0].type).toBe(TokenType.WhiteSpace);
+  expect(tokenList[1].type).toBe(TokenType.Bracket);
+  expect(tokenList[2].type).toBe(TokenType.NumericLiteral);
+  expect(tokenList[3].type).toBe(TokenType.Operator);
+  expect(tokenList[4].type).toBe(TokenType.NumericLiteral);
+  expect(tokenList[5].type).toBe(TokenType.Colon);
+  expect(tokenList[6].type).toBe(TokenType.NumericLiteral);
+  expect(tokenList[7].type).toBe(TokenType.Bracket);
 });
 
 test('Brackets - Aritmetic expression identified correctly', () => {

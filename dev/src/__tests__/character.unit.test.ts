@@ -39,7 +39,12 @@ test('isCobolWordPart works correctly', () => {
   expect(Character.isCobolWordPart('-')).toBeTruthy();
   expect(Character.isCobolWordPart('(')).toBeFalsy();
   expect(Character.isCobolWordPart(')')).toBeFalsy();
-  expect(Character.isCobolWordPart(':')).toBeTruthy();
+  expect(Character.isCobolWordPart(':')).toBeFalsy();
+});
+
+test('isColon works correctly', () => {
+  expect(Character.isColon('!')).toBeFalsy();
+  expect(Character.isColon(':')).toBeTruthy();
 });
 
 test('isStringIndicator works correctly', () => {

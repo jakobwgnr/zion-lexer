@@ -12,5 +12,6 @@ export const TokenType = {
   StringLiteral: 'StringLiteral',
   Terminator: 'Terminator',
   Bracket: 'Bracket',
+  Colon: 'Colon',
   NotIdentified: 'NotIdentified',
 };
