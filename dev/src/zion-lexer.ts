@@ -7,7 +7,7 @@
 // Requirements
 // ------------------------------------------------------------------------------
 require('debug').enable('zion-lexer:*,-zion-lexer:code-path');
-import { fscheck } from './util/fscheck';
+import { fscheck } from 'zion-commons';
 
 import { Lexer } from './Lexer';
 
